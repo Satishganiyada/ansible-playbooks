@@ -1,0 +1,16 @@
+---
+- name: Install and start Nginx
+  hosts: myservers
+  become: true  # This applies to all tasks in the play
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes  # Optional: Update the package cache before installing
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
